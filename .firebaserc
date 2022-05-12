@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "favstorage-me": {
+      "hosting": {
+        "favstorage": [
+          "favstorage-me"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "favstorage-me"
+  }
+}

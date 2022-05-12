@@ -109,6 +109,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "favstorage:build:production",
+            "firebaseProject": "favstorage-me",
+            "firebaseHostingSite": "favstorage-me"
+          }
         }
       }
     }
