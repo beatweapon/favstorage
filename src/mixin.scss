@@ -1,0 +1,11 @@
+@mixin small_view {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin middle_view {
+  @media screen and (min-width: 769px) {
+    @content;
+  }
+}
