@@ -1,2 +1,7 @@
 <app-header [isMyPage]="isMyPage"></app-header>
+
 <app-keyword-list></app-keyword-list>
+
+<div class="addKeyword" *ngIf="isMyPage">
+  <app-keyword-add-button></app-keyword-add-button>
+</div>

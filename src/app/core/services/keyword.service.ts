@@ -19,11 +19,16 @@ export interface KeywordWithId extends Keyword {
 
 export type Keyword = {
   keyword: string;
-  tags?: string[];
-  url?: string;
+  tags: string[];
+  url: string;
   createDate?: any;
-  updateDate: any;
+  updateDate?: any;
 };
+
+export interface TagSummary {
+  tag: string;
+  count: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -59,6 +64,22 @@ export class KeywordService {
   }
 
   /**
+   * 登録タグのサマリ
+   */
+  get tagSummary(): TagSummary[] {
+    const summary: { [tag: string]: number } = {};
+    this.keywords.forEach((keyword) => {
+      keyword.tags.forEach((tag) => {
+        summary[tag] = summary[tag] ? summary[tag] + 1 : 1;
+      });
+    });
+    const summaryList = Object.entries(summary).map(([tag, count]) => {
+      return { tag, count };
+    });
+    return summaryList.sort((a, b) => b.count - a.count);
+  }
+
+  /**
    * 参照するコレクションのパスを設定する
    * @param userId データ取得対象のuserId
    */
@@ -73,14 +94,9 @@ export class KeywordService {
    * @param tags キーワードに追加するタグ
    * @param url キーワードにまつわるURL
    */
-  async addKeyword(keyword: string, tags: string[] = [], url: string = '') {
-    const newKeyWord: Keyword = {
-      keyword,
-      tags,
-      url,
-      createDate: serverTimestamp(),
-      updateDate: serverTimestamp(),
-    };
+  async addKeyword(newKeyWord: Keyword) {
+    newKeyWord.createDate = serverTimestamp();
+    newKeyWord.updateDate = serverTimestamp();
 
     const keywordCollection = collection(
       this.firestore,

@@ -65,10 +65,4 @@ export class KeywordListComponent implements OnInit {
     // 全ての単語がヒットすればtrueを返す
     return true;
   }
-
-  openDialog(): void {
-    // const dialogRef = this.dialog.open(AddKeywordDialogComponent, {
-    //   width: '80%',
-    // });
-  }
 }

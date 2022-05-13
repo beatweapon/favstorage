@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
+import { AddKeywordDialogComponent } from './add-keyword-dialog/add-keyword-dialog.component';
 import { KeywordListComponent } from './keyword-list/keyword-list.component';
 import { KeywordViewerComponent } from './keyword-list/keyword-viewer/keyword-viewer.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
+import { KeywordAddButtonComponent } from './keyword-add-button/keyword-add-button.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +26,13 @@ import { MatMenuModule } from '@angular/material/menu';
     KeywordListComponent,
     KeywordViewerComponent,
     HeaderComponent,
+    AddKeywordDialogComponent,
+    KeywordAddButtonComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     HomeRoutingModule,
     MatButtonModule,
     MatCardModule,
@@ -29,6 +40,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatChipsModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatDialogModule,
   ],
 })
 export class HomeModule {}

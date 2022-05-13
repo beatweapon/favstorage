@@ -1,0 +1,60 @@
+<div mat-dialog-content>
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="newKeyword.keyword"
+      placeholder="New Keyword"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="URL" [(ngModel)]="newKeyword.url" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-chip-list #chipList multiple="true">
+      <mat-chip
+        *ngFor="let tag of newKeyword.tags"
+        [selectable]="true"
+        [removable]="removable"
+        (removed)="removeTag(tag)"
+        color="accent"
+      >
+        {{ tag }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        class="tagsInput"
+        placeholder="Tags"
+        #tagInput
+        [formControl]="tagCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="addTag($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
+      <mat-option
+        *ngFor="let summary of filteredtags | async"
+        [value]="summary.tag"
+      >
+        {{ summary.tag }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">キャンセル</button>
+  <button
+    mat-button
+    (click)="addKeyword()"
+    color="primary"
+    cdkFocusInitial
+    [disabled]="newKeyword.keyword === ''"
+  >
+    追加
+  </button>
+</div>
