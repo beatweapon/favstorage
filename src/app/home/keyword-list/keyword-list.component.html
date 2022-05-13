@@ -1,0 +1,41 @@
+<div *ngIf="keywords; else loading" class="keywordListBox">
+  <div class="inner">
+    <article class="keywordList" *ngIf="filteredKeywords.length; else empty">
+      <section
+        *ngFor="let keyword of filteredKeywords; trackBy: trackByKeywordId"
+        class="keywordCard"
+      >
+        <app-keyword-viewer
+          [searchWords]="searchWords"
+          [isEditable]="isMyPage"
+          [keyword]="keyword"
+        ></app-keyword-viewer>
+      </section>
+    </article>
+    <ng-template #empty>
+      <section class="empty" *ngIf="filteredKeywords.length === 0">
+        <h1>このストレージは空っぽ！</h1>
+        <p *ngIf="isMyPage">右下のボタンからキーワードを追加してみましょう。</p>
+      </section>
+      <section class="empty" *ngIf="filteredEmpty">
+        <h1>カードが見つかりません！</h1>
+        <p>絞り込むタグを変更してみましょう。</p>
+      </section>
+    </ng-template>
+    <div class="addKeyword" *ngIf="isMyPage">
+      <button
+        mat-fab
+        class="addKeyword"
+        color="primary"
+        (click)="openDialog()"
+        *ngIf="editModeCount === 0"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

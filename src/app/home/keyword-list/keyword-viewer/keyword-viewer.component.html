@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ keyword.keyword }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <section>
+      <p class="url" *ngIf="keyword.url">
+        <mat-icon>link</mat-icon>
+        <a href="{{ keyword.url }}" target="_blank" rel="noopener noreferrer">{{
+          keyword.url
+        }}</a>
+      </p>
+      <mat-chip-list multiple="true">
+        <mat-chip
+          *ngFor="let tag of keyword.tags"
+          (click)="setSearchWord(tag)"
+          [selected]="isSelectedTag(tag)"
+          color="accent"
+        >
+          {{ tag }}
+        </mat-chip>
+      </mat-chip-list>
+    </section>
+    <mat-card-actions>
+      <time *ngIf="keyword.updateDate !== null">{{
+        keyword.updateDate.seconds * 1000 | date: "yyyy/MM/dd HH:mm"
+      }}</time>
+      <!-- <section class="btn">
+        <button mat-icon-button *ngIf="isEditable" (click)="toEditMode()">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          *ngIf="reprintable"
+          (click)="reprintToMystorage()"
+        >
+          <mat-icon color="primary">move_to_inbox</mat-icon>
+        </button>
+      </section> -->
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
