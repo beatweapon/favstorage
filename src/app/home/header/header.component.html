@@ -1,0 +1,27 @@
+<header>
+  <h1>
+    <a class="appIcon" routerLink="/">
+      <img src="/assets/favstorage_icon.svg" alt="home" />
+    </a>
+    <a class="userName" routerLink="/{{ user.uid }}" *ngIf="user; isMyPage">
+      <img src="{{ user.photoURL }}" alt="user icon" /><span>{{
+        user.displayName
+      }}</span>
+    </a>
+  </h1>
+
+  <button
+    class="menuBtn"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    *ngIf="user"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()" *ngIf="user">
+      <mat-icon color="primaly">power_settings_new</mat-icon>
+      <span>ログアウト</span>
+    </button>
+  </mat-menu>
+</header>
