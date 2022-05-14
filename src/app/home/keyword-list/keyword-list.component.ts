@@ -32,6 +32,8 @@ export class KeywordListComponent implements OnInit {
   }
 
   get filteredKeywords() {
+    if (!this.keywords) return [];
+
     return this.keywords.filter((k) => this.andFilter(k, this.searchWords));
   }
 
@@ -40,7 +42,11 @@ export class KeywordListComponent implements OnInit {
   }
 
   get filteredEmpty(): boolean {
-    return this.filteredKeywords.length === 0 && this.keywords.length > 0;
+    return (
+      !!this.keywords &&
+      this.filteredKeywords.length === 0 &&
+      this.keywords.length > 0
+    );
   }
 
   trackByKeywordId(index: number, item: KeywordWithId) {

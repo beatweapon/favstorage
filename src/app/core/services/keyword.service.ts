@@ -36,7 +36,7 @@ export interface TagSummary {
 export class KeywordService {
   private keywordSubscription: Subscription | null = null;
   private keywordCollectionPath = '';
-  public keywords: KeywordWithId[] = [];
+  public keywords: KeywordWithId[] | null = null;
 
   constructor(private firestore: Firestore) {}
 
@@ -67,6 +67,8 @@ export class KeywordService {
    * 登録タグのサマリ
    */
   get tagSummary(): TagSummary[] {
+    if (!this.keywords) return [];
+
     const summary: { [tag: string]: number } = {};
     this.keywords.forEach((keyword) => {
       keyword.tags.forEach((tag) => {
@@ -139,6 +141,6 @@ export class KeywordService {
     }
 
     this.keywordCollectionPath = '';
-    this.keywords = [];
+    this.keywords = null;
   }
 }
