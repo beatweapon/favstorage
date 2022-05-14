@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@/core/services/auth.service';
 import { KeywordService, KeywordWithId } from '@/core/services/keyword.service';
@@ -17,6 +18,7 @@ export class KeywordListComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private keywordService: KeywordService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -24,6 +26,18 @@ export class KeywordListComponent implements OnInit {
     this.route.params.subscribe((param) => {
       this.userId = param['userId'];
       this.keywordService.subscribeCollection(this.userId);
+    });
+
+    this.route.queryParams.subscribe((param) => {
+      const searchWords = param['searchWords'];
+
+      if (typeof searchWords === 'string') {
+        this.searchWords = [searchWords];
+      }
+
+      if (typeof searchWords === 'object') {
+        this.searchWords = searchWords;
+      }
     });
   }
 
@@ -77,11 +91,17 @@ export class KeywordListComponent implements OnInit {
    * @param tag
    */
   setSearchWord(tag: string) {
-    const index = this.searchWords.indexOf(tag);
+    const searchWords = this.searchWords.slice();
+    const index = searchWords.indexOf(tag);
     if (index >= 0) {
-      this.searchWords.splice(index, 1);
+      searchWords.splice(index, 1);
     } else {
-      this.searchWords.push(tag);
+      searchWords.push(tag);
     }
+
+    this.router.navigate([this.router.url.split('?')[0]], {
+      queryParams: { searchWords },
+      replaceUrl: true,
+    });
   }
 }
