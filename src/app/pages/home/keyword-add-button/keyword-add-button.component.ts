@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddKeywordDialogComponent } from '@/home/keyword-add-button/add-keyword-dialog/add-keyword-dialog.component';
+import { AddKeywordDialogComponent } from './add-keyword-dialog/add-keyword-dialog.component';
 
 @Component({
   selector: 'app-keyword-add-button',
