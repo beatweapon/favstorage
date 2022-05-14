@@ -65,4 +65,17 @@ export class KeywordListComponent implements OnInit {
     // 全ての単語がヒットすればtrueを返す
     return true;
   }
+
+  /**
+   * 検索するタグをセットする
+   * @param tag
+   */
+  setSearchWord(tag: string) {
+    const index = this.searchWords.indexOf(tag);
+    if (index >= 0) {
+      this.searchWords.splice(index, 1);
+    } else {
+      this.searchWords.push(tag);
+    }
+  }
 }

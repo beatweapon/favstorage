@@ -5,11 +5,13 @@
         *ngFor="let keyword of filteredKeywords; trackBy: trackByKeywordId"
         class="keywordCard"
       >
-        <app-keyword-viewer
+        <app-keyword-card
           [searchWords]="searchWords"
           [isEditable]="isMyPage"
           [keyword]="keyword"
-        ></app-keyword-viewer>
+          (setSearchWord)="setSearchWord($event)"
+        >
+        </app-keyword-card>
       </section>
     </article>
     <ng-template #empty>

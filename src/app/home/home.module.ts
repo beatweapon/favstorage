@@ -7,7 +7,9 @@ import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 import { AddKeywordDialogComponent } from './add-keyword-dialog/add-keyword-dialog.component';
 import { KeywordListComponent } from './keyword-list/keyword-list.component';
-import { KeywordViewerComponent } from './keyword-list/keyword-viewer/keyword-viewer.component';
+import { KeywordCardComponent } from './keyword-list/keyword-card/keyword-card.component';
+import { KeywordViewerComponent } from './keyword-list/keyword-card/keyword-viewer/keyword-viewer.component';
+import { KeywordEditorComponent } from './keyword-list/keyword-card/keyword-editor/keyword-editor.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +26,9 @@ import { KeywordAddButtonComponent } from './keyword-add-button/keyword-add-butt
   declarations: [
     HomeComponent,
     KeywordListComponent,
+    KeywordCardComponent,
     KeywordViewerComponent,
+    KeywordEditorComponent,
     HeaderComponent,
     AddKeywordDialogComponent,
     KeywordAddButtonComponent,
