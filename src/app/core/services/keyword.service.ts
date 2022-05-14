@@ -12,6 +12,7 @@ import {
   orderBy,
   serverTimestamp,
 } from '@angular/fire/firestore';
+import { AuthService } from './auth.service';
 
 export interface KeywordWithId extends Keyword {
   id: string;
@@ -35,10 +36,9 @@ export interface TagSummary {
 })
 export class KeywordService {
   private keywordSubscription: Subscription | null = null;
-  private keywordCollectionPath = '';
   public keywords: KeywordWithId[] | null = null;
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private authService: AuthService) {}
 
   /**
    * 受け取ったユーザーIDのキーワードコレクションの監視を開始する
@@ -47,12 +47,9 @@ export class KeywordService {
   subscribeCollection(userId: string) {
     this.crear();
 
-    this.setKeywordCollectionPath(userId);
+    const collectionPath = this.getKeywordCollectionPath(userId);
 
-    const keywordCollection = collection(
-      this.firestore,
-      this.keywordCollectionPath
-    );
+    const keywordCollection = collection(this.firestore, collectionPath);
 
     const q = query(keywordCollection, orderBy('createDate', 'desc'));
 
@@ -82,14 +79,6 @@ export class KeywordService {
   }
 
   /**
-   * 参照するコレクションのパスを設定する
-   * @param userId データ取得対象のuserId
-   */
-  setKeywordCollectionPath(userId: string) {
-    this.keywordCollectionPath = `users/${userId}/keywords`;
-  }
-
-  /**
    * キーワード新規追加
    * @param userId 追加対象のユーザーID
    * @param keyword 新規に追加する文字列
@@ -102,7 +91,7 @@ export class KeywordService {
 
     const keywordCollection = collection(
       this.firestore,
-      this.keywordCollectionPath
+      this.authUserKeywordCollectionPath
     );
 
     await addDoc(keywordCollection, newKeyWord);
@@ -121,7 +110,7 @@ export class KeywordService {
     };
 
     await updateDoc(
-      doc(this.firestore, this.keywordCollectionPath, keywordWithId.id),
+      doc(this.firestore, this.authUserKeywordCollectionPath, keywordWithId.id),
       newData
     );
   }
@@ -132,7 +121,9 @@ export class KeywordService {
    * @param keywordId キーワードデータのid
    */
   deleteKeywordData(keywordId: string) {
-    deleteDoc(doc(this.firestore, this.keywordCollectionPath, keywordId));
+    deleteDoc(
+      doc(this.firestore, this.authUserKeywordCollectionPath, keywordId)
+    );
   }
 
   crear() {
@@ -140,7 +131,25 @@ export class KeywordService {
       this.keywordSubscription.unsubscribe();
     }
 
-    this.keywordCollectionPath = '';
     this.keywords = null;
+  }
+
+  /**
+   * ログインユーザーのコレクションのパスを取得する
+   */
+  get authUserKeywordCollectionPath() {
+    if (!this.authService.user) return '';
+
+    const userId = this.authService.user.uid;
+
+    return this.getKeywordCollectionPath(userId);
+  }
+
+  /**
+   * 参照するコレクションのパスを取得する
+   * @param userId データ取得対象のuserId
+   */
+  getKeywordCollectionPath(userId: string) {
+    return `users/${userId}/keywords`;
   }
 }
