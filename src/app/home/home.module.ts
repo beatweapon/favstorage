@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { KeywordAddButtonComponent } from './keyword-add-button/keyword-add-button.component';
+import { DeleteConfirmDialogComponent } from './keyword-list/keyword-card/keyword-editor/delete-confirm-dialog/delete-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { KeywordAddButtonComponent } from './keyword-add-button/keyword-add-butt
     HeaderComponent,
     AddKeywordDialogComponent,
     KeywordAddButtonComponent,
+    DeleteConfirmDialogComponent,
   ],
   imports: [
     CommonModule,

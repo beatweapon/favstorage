@@ -12,11 +12,13 @@ import {
   MatAutocompleteSelectedEvent,
   MatAutocomplete,
 } from '@angular/material/autocomplete';
+import { MatDialog } from '@angular/material/dialog';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { KeywordService, KeywordWithId } from '@/core/services/keyword.service';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 
 @Component({
   selector: 'app-keyword-editor',
@@ -40,7 +42,10 @@ export class KeywordEditorComponent implements OnInit {
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
-  constructor(private keywordService: KeywordService) {
+  constructor(
+    private dialog: MatDialog,
+    private keywordService: KeywordService
+  ) {
     this.filteredtags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) =>
@@ -104,6 +109,31 @@ export class KeywordEditorComponent implements OnInit {
     }
 
     this.updateKeywordData();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
+      width: '80%',
+      data: {
+        title: 'カードを削除しちゃう？',
+        text: '間違って消してもやり直しはできませんよ…',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteKeywordData();
+
+        this.closeEditor.emit();
+      }
+    });
+  }
+
+  /**
+   * キーワードを削除する処理
+   */
+  deleteKeywordData(): void {
+    this.keywordService.deleteKeywordData(this.keyword.id);
   }
 
   isSelectedTag(tag: string): boolean {
