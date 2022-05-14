@@ -19,6 +19,7 @@ import { KeywordService, Keyword } from '@/core/services/keyword.service';
   styleUrls: ['./add-keyword-dialog.component.scss'],
 })
 export class AddKeywordDialogComponent implements OnInit {
+  addButtonLabel = '追加';
   public newKeyword = this.clearNewKeyword();
 
   clearNewKeyword(): Keyword {
@@ -107,7 +108,7 @@ export class AddKeywordDialogComponent implements OnInit {
 
     this.newKeyword = this.clearNewKeyword();
 
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {

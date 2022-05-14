@@ -31,13 +31,15 @@
         <button mat-icon-button *ngIf="isEditable" (click)="openEditor.emit()">
           <mat-icon color="primary">edit</mat-icon>
         </button>
-        <!-- <button
+        <button
           mat-icon-button
+          color="primary"
           *ngIf="reprintable"
+          [disabled]="reprinted"
           (click)="reprintToMystorage()"
         >
-          <mat-icon color="primary">move_to_inbox</mat-icon>
-        </button> -->
+          <mat-icon>move_to_inbox</mat-icon>
+        </button>
       </section>
     </mat-card-actions>
   </mat-card-content>
