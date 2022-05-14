@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
-import { AddKeywordDialogComponent } from './add-keyword-dialog/add-keyword-dialog.component';
+import { AddKeywordDialogComponent } from './keyword-add-button/add-keyword-dialog/add-keyword-dialog.component';
 import { KeywordListComponent } from './keyword-list/keyword-list.component';
 import { KeywordCardComponent } from './keyword-list/keyword-card/keyword-card.component';
 import { KeywordViewerComponent } from './keyword-list/keyword-card/keyword-viewer/keyword-viewer.component';
