@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@/core/services/auth.service';
 import { KeywordService, KeywordWithId } from '@/core/services/keyword.service';
@@ -10,15 +9,16 @@ import { KeywordService, KeywordWithId } from '@/core/services/keyword.service';
   styleUrls: ['./keyword-list.component.scss'],
 })
 export class KeywordListComponent implements OnInit {
+  @Input() searchWords!: string[];
+  @Output() toggleSearchWord: EventEmitter<any> = new EventEmitter();
+
   userId: string = '';
-  searchWords: string[] = [];
   mode: 'or' | 'and' = 'and';
   editModeCount = 0;
 
   constructor(
     private authService: AuthService,
     private keywordService: KeywordService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -26,18 +26,6 @@ export class KeywordListComponent implements OnInit {
     this.route.params.subscribe((param) => {
       this.userId = param['userId'];
       this.keywordService.subscribeCollection(this.userId);
-    });
-
-    this.route.queryParams.subscribe((param) => {
-      const searchWords = param['searchWords'];
-
-      if (typeof searchWords === 'string') {
-        this.searchWords = [searchWords];
-      }
-
-      if (typeof searchWords === 'object') {
-        this.searchWords = searchWords;
-      }
     });
   }
 
@@ -84,24 +72,5 @@ export class KeywordListComponent implements OnInit {
 
     // 全ての単語がヒットすればtrueを返す
     return true;
-  }
-
-  /**
-   * 検索するタグをセットする
-   * @param tag
-   */
-  setSearchWord(tag: string) {
-    const searchWords = this.searchWords.slice();
-    const index = searchWords.indexOf(tag);
-    if (index >= 0) {
-      searchWords.splice(index, 1);
-    } else {
-      searchWords.push(tag);
-    }
-
-    this.router.navigate([this.router.url.split('?')[0]], {
-      queryParams: { searchWords },
-      replaceUrl: true,
-    });
   }
 }

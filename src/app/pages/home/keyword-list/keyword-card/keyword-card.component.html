@@ -3,13 +3,13 @@
   [searchWords]="searchWords"
   [isEditable]="isEditable"
   [keyword]="keyword"
-  (onClickTag)="setSearchWord.emit($event)"
+  (onClickTag)="toggleSearchWord.emit($event)"
   (openEditor)="openEditor()"
 ></app-keyword-viewer>
 <app-keyword-editor
   *ngIf="isEditMode"
   [searchWords]="searchWords"
   [keyword]="keyword"
-  (onClickTag)="setSearchWord.emit($event)"
+  (onClickTag)="toggleSearchWord.emit($event)"
   (closeEditor)="closeEditor()"
 ></app-keyword-editor>

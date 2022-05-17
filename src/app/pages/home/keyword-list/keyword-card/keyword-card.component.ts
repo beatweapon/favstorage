@@ -10,7 +10,7 @@ export class KeywordCardComponent implements OnInit {
   @Input() keyword!: KeywordWithId;
   @Input() searchWords: String[] = [];
   @Input() isEditable: boolean = false;
-  @Output() setSearchWord: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSearchWord: EventEmitter<any> = new EventEmitter();
   isEditMode = false;
 
   constructor() {}

@@ -9,7 +9,7 @@
           [searchWords]="searchWords"
           [isEditable]="isMyPage"
           [keyword]="keyword"
-          (setSearchWord)="setSearchWord($event)"
+          (toggleSearchWord)="toggleSearchWord.emit($event)"
         >
         </app-keyword-card>
       </section>

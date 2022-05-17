@@ -1,6 +1,9 @@
 <app-header class="header" [isMyPage]="isMyPage"></app-header>
 
-<app-keyword-list></app-keyword-list>
+<app-keyword-list
+  [searchWords]="searchWords"
+  (toggleSearchWord)="toggleSearchWord($event)"
+></app-keyword-list>
 
 <div class="addKeyword" *ngIf="isMyPage">
   <app-keyword-add-button></app-keyword-add-button>
