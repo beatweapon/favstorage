@@ -1,25 +1,33 @@
-.header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: +1;
-}
-
-.searchbox {
-  position: fixed;
-  width: 100%;
-  background: white;
-  bottom: 0;
-  left: 0;
-  z-index: +1;
-  border-top: 1px solid #f7f6f5;
+.home {
+  padding: 1em 1em 10.5em;
+  background: #f7f6f5;
+  box-sizing: border-box;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
+  height: 100%;
 
-.addKeyword {
-  position: fixed;
-  bottom: 6rem;
-  right: 0.5rem;
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: +1;
+  }
+
+  .searchbox {
+    position: fixed;
+    width: 100%;
+    background: white;
+    bottom: 0;
+    left: 0;
+    z-index: +1;
+    border-top: 1px solid #f7f6f5;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .addKeyword {
+    position: fixed;
+    bottom: 6rem;
+    right: 0.5rem;
+  }
 }

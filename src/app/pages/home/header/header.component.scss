@@ -1,9 +1,6 @@
 $mainColor: #d0e6ff;
 $accentTxtColor: #3f51b5;
 
-a {
-  text-decoration: none;
-}
 header {
   display: flex;
   padding: 0.5rem;
@@ -23,7 +20,7 @@ header {
     line-height: 2.5;
     overflow: hidden;
 
-    .appIcon {
+    .app_icon {
       margin-right: 0.5em;
       img {
         width: 2rem;
@@ -37,7 +34,7 @@ header {
       vertical-align: middle;
     }
 
-    .userName {
+    .user_name {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
@@ -67,15 +64,12 @@ header {
       }
     }
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .mat-menu-item {
   color: $accentTxtColor;
-}
-
-.menuBox {
-  color: $accentTxtColor;
-  min-width: 8rem;
-  padding-right: 1rem;
-  box-sizing: border-box;
 }

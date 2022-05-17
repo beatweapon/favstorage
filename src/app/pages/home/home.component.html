@@ -1,17 +1,19 @@
-<app-header class="header" [isMyPage]="isMyPage"></app-header>
+<div class="home">
+  <app-header class="header" [isMyPage]="isMyPage"></app-header>
 
-<app-keyword-list
-  [searchWords]="searchWords"
-  (toggleSearchWord)="toggleSearchWord($event)"
-></app-keyword-list>
+  <app-keyword-list
+    [searchWords]="searchWords"
+    (toggleSearchWord)="toggleSearchWord($event)"
+  ></app-keyword-list>
 
-<app-searchbox
-  class="searchbox"
-  [searchWords]="searchWords"
-  (addSearchWord)="addSearchWord($event)"
-  (removeSearchWord)="removeSearchWord($event)"
-></app-searchbox>
+  <app-searchbox
+    class="searchbox"
+    [searchWords]="searchWords"
+    (addSearchWord)="addSearchWord($event)"
+    (removeSearchWord)="removeSearchWord($event)"
+  ></app-searchbox>
 
-<div class="addKeyword" *ngIf="isMyPage">
-  <app-keyword-add-button></app-keyword-add-button>
+  <div class="addKeyword" *ngIf="isMyPage">
+    <app-keyword-add-button></app-keyword-add-button>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-.keywordListBox {
+.keyword_list_box {
   position: relative;
   flex: 1;
   padding-top: 3.5rem;
@@ -7,15 +7,10 @@
     height: 100%;
     overflow: auto;
 
-    .keywordList {
-      padding: 1em 1em 10.5em;
-      background: #f7f6f5;
-      box-sizing: border-box;
-      overflow: auto;
-    }
-
-    .keywordCard ~ .keywordCard {
-      margin-top: 0.75em;
+    .keyword_list {
+      .keyword_card ~ .keyword_card {
+        margin-top: 0.75em;
+      }
     }
 
     .empty {
@@ -25,7 +20,7 @@
   }
 }
 
-.loading-area {
+.loading_area {
   display: flex;
   justify-content: center;
   align-items: center;

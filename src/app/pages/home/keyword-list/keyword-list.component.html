@@ -1,9 +1,9 @@
-<div *ngIf="keywords; else loading" class="keywordListBox">
+<div *ngIf="keywords; else loading" class="keyword_list_box">
   <div class="inner">
-    <article class="keywordList" *ngIf="filteredKeywords.length; else empty">
+    <article class="keyword_list" *ngIf="filteredKeywords.length; else empty">
       <section
         *ngFor="let keyword of filteredKeywords; trackBy: trackByKeywordId"
-        class="keywordCard"
+        class="keyword_card"
       >
         <app-keyword-card
           [searchWords]="searchWords"
@@ -28,7 +28,7 @@
 </div>
 
 <ng-template #loading>
-  <div class="loading-area">
+  <div class="loading_area">
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>
