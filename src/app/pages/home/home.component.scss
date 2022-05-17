@@ -6,6 +6,18 @@
   z-index: +1;
 }
 
+.searchbox {
+  position: fixed;
+  width: 100%;
+  background: white;
+  bottom: 0;
+  left: 0;
+  z-index: +1;
+  border-top: 1px solid #f7f6f5;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .addKeyword {
   position: fixed;
   bottom: 6rem;
