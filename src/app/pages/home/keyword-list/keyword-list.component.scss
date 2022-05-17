@@ -13,8 +13,14 @@
       box-sizing: border-box;
       overflow: auto;
     }
+
     .keywordCard ~ .keywordCard {
       margin-top: 0.75em;
+    }
+
+    .empty {
+      font-family: "Rounded Mplus 1c";
+      text-align: center;
     }
   }
 }
