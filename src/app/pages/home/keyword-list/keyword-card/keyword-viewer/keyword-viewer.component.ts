@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '@/core/services/auth.service';
 import { KeywordWithId } from '@/core/services/keyword.service';
 import { AddKeywordDialogComponent } from '@/pages/home/keyword-add-button/add-keyword-dialog/add-keyword-dialog.component';
@@ -18,7 +19,11 @@ export class KeywordViewerComponent implements OnInit {
 
   reprinted = false;
 
-  constructor(private dialog: MatDialog, private authService: AuthService) {}
+  constructor(
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -41,6 +46,19 @@ export class KeywordViewerComponent implements OnInit {
     dialogRef.componentInstance.newKeyword.keyword = this.keyword.keyword;
     dialogRef.componentInstance.newKeyword.url = this.keyword.url;
     dialogRef.componentInstance.newKeyword.tags = this.keyword.tags;
-    dialogRef.afterClosed().subscribe((result) => (this.reprinted = result));
+    dialogRef.afterClosed().subscribe((result) => {
+      this.reprinted = result;
+
+      if (result) {
+        this.openSnackBar();
+      }
+    });
+  }
+
+  openSnackBar() {
+    const message = 'カードをマイストレージにコピーしました';
+    this._snackBar.open(message, undefined, {
+      duration: 3000,
+    });
   }
 }
