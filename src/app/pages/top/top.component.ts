@@ -6,7 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
-  constructor() {}
+  morphingImagePaths = [
+    '/assets/morphing/1.png',
+    '/assets/morphing/2.png',
+    '/assets/morphing/3.png',
+    '/assets/morphing/4.png',
+    '/assets/morphing/5.png',
+    '/assets/morphing/6.png',
+  ];
+  morphingBackImagePath = 'assets/morphing/back.png';
 
   ngOnInit(): void {}
 }

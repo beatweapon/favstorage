@@ -1,2 +1,22 @@
-<p>top works!</p>
-<app-login></app-login>
+<section class="top">
+  <h1><img src="/assets/favstorage_icon.svg" alt="favstorage" />favstorage</h1>
+
+  <article class="overview">
+    <h2>favstorageとは</h2>
+    <p>
+      Favorite + Storageの造語です。<br />
+      「好きなものを詰め込む容れ物」のような意味です。
+    </p>
+    <app-morphing
+      class="morphing_area"
+      [morphingImagePaths]="morphingImagePaths"
+      [morphingBackImagePath]="morphingBackImagePath"
+      [interval]="3500"
+    ></app-morphing>
+    <p>
+      好きなものの情報や沸き起こった感情をタグに書いていつか自分で振り返って懐かしんだりニヤニヤするためのものです。
+    </p>
+  </article>
+
+  <app-login class="footer"></app-login>
+</section>
