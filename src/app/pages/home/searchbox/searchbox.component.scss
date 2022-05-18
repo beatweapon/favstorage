@@ -1,10 +1,12 @@
 form {
+  width: 100%;
   position: relative;
   padding: 0.5rem 1rem 0;
 
   .mat-form-field {
     width: 100%;
   }
+
   .mat-chip {
     height: auto;
     line-height: 1;

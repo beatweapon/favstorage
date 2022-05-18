@@ -23,6 +23,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { KeywordAddButtonComponent } from './keyword-add-button/keyword-add-button.component';
 import { DeleteConfirmDialogComponent } from './keyword-list/keyword-card/keyword-editor/delete-confirm-dialog/delete-confirm-dialog.component';
 import { SearchboxComponent } from './searchbox/searchbox.component';
+import { UrlCopyButtonComponent } from './url-copy-button/url-copy-button.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { SearchboxComponent } from './searchbox/searchbox.component';
     KeywordAddButtonComponent,
     DeleteConfirmDialogComponent,
     SearchboxComponent,
+    UrlCopyButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +56,8 @@ import { SearchboxComponent } from './searchbox/searchbox.component';
     MatInputModule,
     MatAutocompleteModule,
     MatDialogModule,
+    ClipboardModule,
+    MatSnackBarModule,
   ],
 })
 export class HomeModule {}

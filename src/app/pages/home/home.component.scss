@@ -12,6 +12,8 @@
   }
 
   .searchbox {
+    display: flex;
+    align-items: center;
     position: fixed;
     width: 100%;
     background: white;
