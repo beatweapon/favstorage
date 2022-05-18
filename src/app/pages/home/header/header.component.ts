@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@/core/services/auth.service';
 
 @Component({
@@ -9,12 +10,14 @@ import { AuthService } from '@/core/services/auth.service';
 export class HeaderComponent implements OnInit {
   @Input() isMyPage: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  logout() {
-    this.authService.logout();
+  async logout() {
+    await this.authService.logout();
+
+    this.router.navigate(['/']);
   }
 
   get user() {
