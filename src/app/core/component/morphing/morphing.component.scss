@@ -1,0 +1,27 @@
+.images-area {
+  height: inherit;
+  width: inherit;
+  max-height: inherit;
+  max-width: inherit;
+  min-height: 0;
+  position: relative;
+  margin: 0 auto;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  li {
+    list-style: none;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      opacity: 0;
+    }
+  }
+}

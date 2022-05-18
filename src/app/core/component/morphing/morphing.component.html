@@ -1,0 +1,8 @@
+<div class="images-area">
+  <img [src]="morphingBackImagePath" />
+  <ul>
+    <li *ngFor="let morphingImage of morphingImages">
+      <img [src]="morphingImage.url" [@morphing]="morphingImage.state" />
+    </li>
+  </ul>
+</div>
