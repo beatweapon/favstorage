@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top',
@@ -16,5 +18,13 @@ export class TopComponent implements OnInit {
   ];
   morphingBackImagePath = 'assets/morphing/back.png';
 
-  ngOnInit(): void {}
+  constructor(private auth: Auth, private router: Router) {}
+
+  ngOnInit(): void {
+    this.auth.onAuthStateChanged((user) => {
+      if (!user) return;
+
+      this.router.navigate([user.uid]);
+    });
+  }
 }
