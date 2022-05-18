@@ -1,12 +1,18 @@
 {
   "name": "favstorage",
-  "short_name": "favstorage",
+  "short_name": "favst",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
   "icons": [
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
     {
       "src": "assets/favstorage_icon.svg",
       "sizes": "any",
