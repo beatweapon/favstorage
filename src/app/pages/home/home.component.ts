@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
    * @param tag
    */
   toggleSearchWord(tag: string) {
-    console.log(tag);
     const index = this.searchWords.indexOf(tag);
 
     if (index >= 0) {
