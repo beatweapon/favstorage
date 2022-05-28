@@ -1,70 +1,68 @@
-<mat-card>
-  <mat-card-content>
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Words"
-        [(ngModel)]="keyword.keyword"
-        (blur)="updateKeywordData()"
-      />
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="URL"
-        [(ngModel)]="keyword.url"
-        (blur)="updateKeywordData()"
-      />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-chip-list #chipList multiple="true">
-        <mat-chip
-          *ngFor="let tag of keyword.tags"
-          [selectable]="true"
-          [removable]="removable"
-          (removed)="removeTag(tag)"
-          (click)="onClickTag.emit(tag)"
-          [selected]="isSelectedTag(tag)"
-          color="accent"
-        >
-          {{ tag }}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input
-          class="tagsInput"
-          placeholder="Tags"
-          #tagInput
-          [formControl]="tagCtrl"
-          [matAutocomplete]="auto"
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="addTag($event)"
-        />
-      </mat-chip-list>
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        (optionSelected)="selected($event)"
+<mat-card-content>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Words"
+      [(ngModel)]="keyword.keyword"
+      (blur)="updateKeywordData()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="URL"
+      [(ngModel)]="keyword.url"
+      (blur)="updateKeywordData()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-chip-list #chipList multiple="true">
+      <mat-chip
+        *ngFor="let tag of keyword.tags"
+        [selectable]="true"
+        [removable]="removable"
+        (removed)="removeTag(tag)"
+        (click)="onClickTag.emit(tag)"
+        [selected]="isSelectedTag(tag)"
+        color="accent"
       >
-        <mat-option
-          *ngFor="let summary of filteredtags | async"
-          [value]="summary.tag"
-        >
-          {{ summary.tag }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <mat-card-actions>
-      <time *ngIf="keyword.updateDate !== null">{{
-        keyword.updateDate.seconds * 1000 | date: "yyyy/MM/dd HH:mm"
-      }}</time>
-      <section class="btn">
-        <button mat-icon-button (click)="openDialog()">
-          <mat-icon color="warn">delete</mat-icon>
-        </button>
-        <button mat-icon-button (click)="closeEditor.emit()">
-          <mat-icon color="primary">done</mat-icon>
-        </button>
-      </section>
-    </mat-card-actions>
-  </mat-card-content>
-</mat-card>
+        {{ tag }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        class="tagsInput"
+        placeholder="Tags"
+        #tagInput
+        [formControl]="tagCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addTag($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
+      <mat-option
+        *ngFor="let summary of filteredtags | async"
+        [value]="summary.tag"
+      >
+        {{ summary.tag }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-card-actions>
+    <time *ngIf="keyword.updateDate !== null">{{
+      keyword.updateDate.seconds * 1000 | date: "yyyy/MM/dd HH:mm"
+    }}</time>
+    <section class="btn">
+      <button mat-icon-button (click)="openDialog()">
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="closeEditor.emit()">
+        <mat-icon color="primary">done</mat-icon>
+      </button>
+    </section>
+  </mat-card-actions>
+</mat-card-content>

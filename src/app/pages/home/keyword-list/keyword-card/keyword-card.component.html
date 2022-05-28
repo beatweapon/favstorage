@@ -1,15 +1,19 @@
-<app-keyword-viewer
-  *ngIf="!isEditMode"
-  [searchWords]="searchWords"
-  [isEditable]="isEditable"
-  [keyword]="keyword"
-  (onClickTag)="toggleSearchWord.emit($event)"
-  (openEditor)="openEditor()"
-></app-keyword-viewer>
-<app-keyword-editor
-  *ngIf="isEditMode"
-  [searchWords]="searchWords"
-  [keyword]="keyword"
-  (onClickTag)="toggleSearchWord.emit($event)"
-  (closeEditor)="closeEditor()"
-></app-keyword-editor>
+<mat-card class="keyword_card" [style.height]="height">
+  <div #card>
+    <app-keyword-viewer
+      *ngIf="!isEditMode"
+      [searchWords]="searchWords"
+      [isEditable]="isEditable"
+      [keyword]="keyword"
+      (onClickTag)="toggleSearchWord.emit($event)"
+      (openEditor)="openEditor()"
+    ></app-keyword-viewer>
+    <app-keyword-editor
+      *ngIf="isEditMode"
+      [searchWords]="searchWords"
+      [keyword]="keyword"
+      (onClickTag)="toggleSearchWord.emit($event)"
+      (closeEditor)="closeEditor()"
+    ></app-keyword-editor>
+  </div>
+</mat-card>

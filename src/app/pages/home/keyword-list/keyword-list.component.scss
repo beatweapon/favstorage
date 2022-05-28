@@ -18,6 +18,8 @@
     overflow: auto;
 
     .keyword_list {
+      overflow: hidden;
+
       .keyword_card ~ .keyword_card {
         margin-top: 0.75em;
       }
