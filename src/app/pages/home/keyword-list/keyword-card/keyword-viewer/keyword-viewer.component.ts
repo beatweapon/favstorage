@@ -2,8 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '@/core/services/auth.service';
-import { KeywordWithId } from '@/core/services/keyword.service';
+import { KeywordService, KeywordWithId } from '@/core/services/keyword.service';
 import { AddKeywordDialogComponent } from '@/pages/home/keyword-add-button/add-keyword-dialog/add-keyword-dialog.component';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 
 @Component({
   selector: 'app-keyword-viewer',
@@ -18,11 +19,13 @@ export class KeywordViewerComponent implements OnInit {
   @Output() openEditor: EventEmitter<any> = new EventEmitter();
 
   reprinted = false;
+  removable = false;
 
   constructor(
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private keywordService: KeywordService
   ) {}
 
   ngOnInit(): void {}
@@ -60,5 +63,34 @@ export class KeywordViewerComponent implements OnInit {
     this._snackBar.open(message, undefined, {
       duration: 3000,
     });
+  }
+
+  delayRemovable() {
+    this.removable = false;
+
+    setTimeout(() => (this.removable = true), 1000);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
+      width: '80%',
+      data: {
+        title: 'カードを削除しちゃう？',
+        text: '間違って消してもやり直しはできませんよ…',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteKeywordData();
+      }
+    });
+  }
+
+  /**
+   * キーワードを削除する処理
+   */
+  deleteKeywordData(): void {
+    this.keywordService.deleteKeywordData(this.keyword.id);
   }
 }

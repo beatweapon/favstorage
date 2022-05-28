@@ -2,6 +2,26 @@
   <mat-card-title>
     {{ keyword.keyword }}
   </mat-card-title>
+  <button
+    *ngIf="isEditable"
+    mat-icon-button
+    class="menu_button"
+    [matMenuTriggerFor]="menu"
+    (click)="delayRemovable()"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      *ngIf="isEditable"
+      mat-menu-item
+      (click)="openDialog()"
+      [disabled]="!removable"
+    >
+      <mat-icon [color]="removable ? 'warn' : ''">delete</mat-icon>
+      <span>削除する</span>
+    </button>
+  </mat-menu>
 </mat-card-header>
 <mat-card-content>
   <section>
