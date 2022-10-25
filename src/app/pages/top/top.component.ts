@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import {
+  MORPHING_IMAGES,
+  MORPHING_BACK_IMAGE_PATH,
+} from 'src/app/constant/morphingImages';
 
 @Component({
   selector: 'app-top',
@@ -8,15 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
-  morphingImagePaths = [
-    '/assets/morphing/1.png',
-    '/assets/morphing/2.png',
-    '/assets/morphing/3.png',
-    '/assets/morphing/4.png',
-    '/assets/morphing/5.png',
-    '/assets/morphing/6.png',
-  ];
-  morphingBackImagePath = 'assets/morphing/back.png';
+  morphingImages = MORPHING_IMAGES;
+  morphingBackImagePath = MORPHING_BACK_IMAGE_PATH;
 
   constructor(private auth: Auth, private router: Router) {}
 

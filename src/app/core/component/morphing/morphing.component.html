@@ -2,7 +2,11 @@
   <img [src]="morphingBackImagePath" />
   <ul>
     <li *ngFor="let morphingImage of morphingImages">
-      <img [src]="morphingImage.url" [@morphing]="morphingImage.state" />
+      <img
+        [src]="morphingImage.path"
+        [alt]="morphingImage.alt"
+        [@morphing]="morphingImage.state"
+      />
     </li>
   </ul>
 </div>

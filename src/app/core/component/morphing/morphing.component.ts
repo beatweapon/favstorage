@@ -7,6 +7,13 @@ import {
   animate,
 } from '@angular/animations';
 
+type Image = {
+  path: string;
+  alt: string;
+};
+
+type MorphingImage = Image & { state: 'active' | 'inactive' };
+
 @Component({
   selector: 'app-morphing',
   templateUrl: './morphing.component.html',
@@ -30,23 +37,23 @@ import {
   ],
 })
 export class MorphingComponent implements OnInit {
-  @Input() morphingImagePaths!: string[];
+  @Input() images!: Image[];
   @Input() morphingBackImagePath!: string;
   @Input() interval!: number;
 
   activeImageIndex = 0;
-  morphingImages: { url: string; state: 'active' | 'inactive' }[] = [];
+  morphingImages: MorphingImage[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-    this.morphingImages = this.morphingImagePaths.map((path) => {
-      return { url: path, state: 'inactive' };
+    this.morphingImages = this.images.map((image) => {
+      return { ...image, state: 'inactive' };
     });
 
     // 初期表示する画像をランダムに決定
     this.activeImageIndex = Math.floor(
-      Math.random() * this.morphingImagePaths.length
+      Math.random() * this.morphingImages.length
     );
 
     this.morphingImages[this.activeImageIndex].state = 'active';
