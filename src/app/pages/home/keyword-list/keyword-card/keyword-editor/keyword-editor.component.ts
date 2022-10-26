@@ -7,7 +7,7 @@ import {
   EventEmitter,
   ViewChild,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import {
   MatAutocompleteSelectedEvent,
   MatAutocomplete,
@@ -36,7 +36,7 @@ export class KeywordEditorComponent implements OnInit {
   addOnBlur = true;
 
   filteredtags: Observable<{ tag: string; count: number }[]>;
-  tagCtrl = new FormControl();
+  tagCtrl = new UntypedFormControl();
 
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;

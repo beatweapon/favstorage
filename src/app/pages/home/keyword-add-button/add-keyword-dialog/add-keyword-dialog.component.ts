@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import {
   MatAutocompleteSelectedEvent,
@@ -36,7 +36,7 @@ export class AddKeywordDialogComponent implements OnInit {
   addOnBlur = true;
 
   filteredtags: Observable<{ tag: string; count: number }[]>;
-  tagCtrl = new FormControl();
+  tagCtrl = new UntypedFormControl();
 
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
