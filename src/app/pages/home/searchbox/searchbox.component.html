@@ -15,6 +15,7 @@
         placeholder="タグで絞り込み"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
         (matChipInputTokenEnd)="add($event)"
       />
     </mat-chip-list>
